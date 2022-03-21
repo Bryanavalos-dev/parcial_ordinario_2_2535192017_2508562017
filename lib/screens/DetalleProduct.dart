@@ -1,4 +1,6 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -23,20 +25,23 @@ class DetalleProduct extends StatefulWidget {
 }
 
 class _DetalleProductState extends State<DetalleProduct> {
-  double _currentSliderValue = 20;
+  //double _currentSliderValue = 20;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.grey,
         elevation: 0,
-        title: Text("Detalle de Producto"),
+        title: Text(
+          "Detalle de Producto",
+          style: TextStyle(color: Colors.white),
+        ),
         actions: const [
           IconButton(
               icon: Icon(
-                Feather.shopping_bag,
+                Icons.shopping_bag_outlined,
                 color: Colors.white,
               ),
               onPressed: null)
@@ -56,100 +61,185 @@ class _DetalleProductState extends State<DetalleProduct> {
               Container(
                 padding: EdgeInsets.all(25),
                 child: Container(
-                  width: 120,
-                  height: 120,
+                  width: 130,
+                  height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(widget.img), fit: BoxFit.fill),
                   ),
                   alignment: Alignment.center,
                 ),
-              )
+              ),
             ],
           ),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 20, right: 20),
+              child: Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                ),
+              ),
+            )
+          ]),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+            padding: const EdgeInsets.all(0),
             child: Container(
-              width: size.width - 80,
-              height: 70,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              height: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                color: Colors.white,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: TextStyle(fontSize: 18, color: Colors.black),
+                  Column(children: [
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.title,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 100,
+                        ),
+                        Container(
+                          width: 150,
+                          child: Text(
+                            "\$" + widget.price,
+                            maxLines: 1,
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star_border_outlined,
+                        color: Colors.yellow,
                       ),
                       SizedBox(
-                        height: 50,
+                        width: 15,
+                      ),
+                      Text("200 Reviews")
+                    ]),
+                  ]),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 5,
                       ),
                       Container(
-                        width: 150,
+                        width: 400,
+                        padding: const EdgeInsets.only(top: 3, left: 10),
                         child: Text(
-                          "\$" + widget.price,
-                          maxLines: 1,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 15, color: Colors.black),
+                          widget.description,
+                          maxLines: 8,
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       )
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const <Widget>[
+                        ColorDot(
+                          fillColor: Colors.green,
+                          //Color(0xFF80989A),
+                          isSelected: true,
+                        ),
+                        ColorDot(
+                          fillColor: Colors.grey,
+                          //Color(0xFFFF5200),
+                        ),
+                        ColorDot(
+                          fillColor: Colors.red,
+                          //Color(0xFF035AA6),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(left: 130, right: 130),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.grey),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ))),
+                        onPressed: () {},
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(Icons.archive_outlined),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text('Comprar')
+                            ]),
+                      )),
                 ],
               ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [],
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 3),
-                child: Text(
-                  widget.description,
-                  style: TextStyle(color: Colors.black),
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const <Widget>[
-                ColorDot(
-                  fillColor: Colors.green,
-                  //Color(0xFF80989A),
-                  isSelected: true,
-                ),
-                ColorDot(
-                  fillColor: Colors.grey,
-                  //Color(0xFFFF5200),
-                ),
-                ColorDot(
-                  fillColor: Colors.red,
-                  //Color(0xFF035AA6),
-                ),
-              ],
             ),
           ),
         ],

@@ -31,8 +31,8 @@ class _SillasState extends State<Sillas> {
           //crossAxisSpacing: 10
         ),
         itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(15),
+          return Container(
+            padding: EdgeInsets.all(5),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -48,6 +48,7 @@ class _SillasState extends State<Sillas> {
                         type: PageTransitionType.scale));
               },
               child: Card(
+                color: Color(0xFFEEEEEE),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 child: Expanded(
@@ -55,8 +56,11 @@ class _SillasState extends State<Sillas> {
                   child: Column(
                     children: [
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          SizedBox(
+                            height: 20,
+                          ),
                           Image(
                             width: 100,
                             height: 100,
