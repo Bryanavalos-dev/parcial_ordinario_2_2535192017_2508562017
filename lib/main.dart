@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/home.dart';
 
-import 'models/ProductSillas.dart';
-
 void main() {
   runApp(const Tienda());
 }

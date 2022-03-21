@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/ProductSillas.dart';
-import 'Paginas/ShopSillas.dart';
+import 'package:shop_app/screens/ShopSillas.dart';
 //import 'Paginas/header.dart';
 
 class home extends StatefulWidget {
@@ -34,62 +34,73 @@ class _homeState extends State<home> {
   }
 
   Widget getBusqueda() {
-    return GridView.builder(
-        itemCount: 2,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, crossAxisSpacing: 10),
-        itemBuilder: (context, index) {
-          return Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: List.generate(sillasList.length - 0, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 30),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 180,
-                            height: 180,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(sillasList[index]['img']),
-                                    fit: BoxFit.cover),
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            sillasList[index]['title'],
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            width: 100,
-                            child: Text(
-                              "\$" + sillasList[index]['price'],
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          )
-                        ],
-                      ),
+    return Column(//crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+      Padding(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                  iconColor: Colors.blueGrey,
+                  icon: Icon(Icons.search),
+                  labelText: "BUSQUEDA",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  )),
+            )
+          ],
+        ),
+      ),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+              children: List.generate(OverList.length, (index) {
+            return Padding(
+              padding: const EdgeInsets.only(right: 25),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    Menu = index;
+                  });
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      OverList[index],
+                      style: TextStyle(
+                          //color: Colors.grey,
+                          fontSize: 15,
+                          color: Menu == index ? Colors.blueGrey : Colors.grey,
+                          fontWeight: FontWeight.w600),
                     ),
-                  );
-                }),
-              ));
-        });
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Menu == index
+                        ? Container(
+                            width: 30,
+                            height: 2,
+                            decoration: BoxDecoration(
+                                color: Colors.blueGrey,
+                                borderRadius: BorderRadius.circular(10)),
+                          )
+                        : Container()
+                  ],
+                ),
+              ),
+            );
+          })),
+        ),
+      ),
+      Row(children: [
+        Expanded(
+          child: Sillas(),
+        )
+      ])
+    ]);
   }
 }
