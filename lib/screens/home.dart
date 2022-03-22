@@ -96,11 +96,10 @@ class _homeState extends State<home> {
           })),
         ),
       ),
-      Row(children: [
-        Expanded(
-          child: Sillas(),
-        )
-      ])
+      Expanded(
+        flex: 1,
+        child: Sillas(),
+      )
     ]);
   }
 }
