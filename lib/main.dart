@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/home.dart';
+import 'package:parcial_ordinario_2_2535192017_2508562017/screens/home.dart';
 
 void main() {
   runApp(const Tienda());
