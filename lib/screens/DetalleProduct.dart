@@ -7,6 +7,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'cart.dart';
+
 import 'color_dots.dart';
 
 class DetalleProduct extends StatefulWidget {
