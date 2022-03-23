@@ -4,7 +4,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:page_transition/page_transition.dart';
 
+import 'cart.dart';
 import 'color_dots.dart';
 
 class DetalleProduct extends StatefulWidget {
@@ -38,13 +40,18 @@ class _DetalleProductState extends State<DetalleProduct> {
           "Detalle de Producto",
           style: TextStyle(color: Colors.white),
         ),
-        actions: const [
+        actions: <Widget>[
           IconButton(
-              icon: Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.white,
-              ),
-              onPressed: null)
+            icon: Icon(Icons.shopping_bag_outlined),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      alignment: Alignment.bottomCenter,
+                      child: Cart(),
+                      type: PageTransitionType.scale));
+            },
+          ),
         ],
       ),
       body: getBody(),

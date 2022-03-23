@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:parcial_ordinario_2_2535192017_2508562017/ProductSillas.dart';
 import 'package:parcial_ordinario_2_2535192017_2508562017/screens/ShopSillas.dart';
+import 'package:parcial_ordinario_2_2535192017_2508562017/screens/cart.dart';
 //import 'Paginas/header.dart';
 
 class home extends StatefulWidget {
@@ -25,7 +27,14 @@ class _homeState extends State<home> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_bag_outlined),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      alignment: Alignment.bottomCenter,
+                      child: Cart(),
+                      type: PageTransitionType.scale));
+            },
           ),
         ],
       ),
