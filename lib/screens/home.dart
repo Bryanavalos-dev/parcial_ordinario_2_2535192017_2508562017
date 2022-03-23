@@ -97,7 +97,6 @@ class _homeState extends State<home> {
         ),
       ),
       Expanded(
-        flex: 1,
         child: Sillas(),
       )
     ]);
